@@ -1,0 +1,32 @@
+.home{
+    display: flex;
+}
+
+
+.products{
+    background-color: aqua;
+    width: 78%;
+    flex-wrap: wrap;
+    /* padding: 20px; */
+}
+
+.product{
+
+}
+
+.filter{
+    background-color: #343a40;
+    color:white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+    /* margin: 10px; */
+    height: 90vh;
+}
+.filter >span{
+    padding-bottom:20px;
+}
+.title{
+    font-size: 30px;
+}
