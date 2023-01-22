@@ -3,7 +3,7 @@ import { Button, Form} from 'react-bootstrap';
 import Rating from './Rating';
 
 export default function Filter() {
-  const [rate, setRate] =useState(5);
+  const [rate, setRate] =useState(4);
   return (
     <div className='filter'>
       <span className='title'>Filter Products</span>

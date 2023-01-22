@@ -6,12 +6,23 @@
 .products{
     background-color: aqua;
     width: 78%;
-    flex-wrap: wrap;
-    /* padding: 20px; */
+    /* flex-wrap: wrap; */
+    padding: 20px;
+    display: grid;
+    /* display: flex; */
+    justify-content: space-around;
+    grid-template-columns: auto auto auto;
+
 }
 
 .product{
+    margin: 10px;
+    padding: 5px;
 
+}
+
+.productImg{
+    object-fit: contain;
 }
 
 .filter{
@@ -29,4 +40,7 @@
 }
 .title{
     font-size: 30px;
+}
+.productTitle{
+
 }

@@ -6,13 +6,13 @@ const Cart = createContext();
 
 const Context =({children})=>{
 
-    const [state, dispacth]= useReducer(cartReducer, {
+    const [state, dispatch]= useReducer(cartReducer, {
         products:[],
         cart:[]
     })
 
     return(
-        <Cart.Provider value={{state, dispacth}}>
+        <Cart.Provider value={{state, dispatch}}>
             {children} 
         </Cart.Provider>
     )
