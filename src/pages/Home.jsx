@@ -9,7 +9,13 @@ export default function Home() {
   useEffect(() => {
     getProduct();
   }, []);
-  const { state, dispatch } = ContextValue();
+
+  const {
+    state,
+    dispatch,
+    productState: { byStock, byFastDelivery, byRating, searchQuery, sort },
+  } = ContextValue();
+  console.log(state);
   async function getProduct() {
     try {
       setIsLoading(true);
@@ -27,6 +33,33 @@ export default function Home() {
     }
   }
 
+  function transformProduct() {
+    let transState = state.products;
+    if (sort) {
+      transState = transState.sort((a, b) =>
+        sort === "lowToHigh" ? a.price - b.price : b.price - a.price
+      );
+    }
+
+    if (!byStock) {
+      transState = transState.filter((prod) => prod.inStock);
+    }
+
+    if (byFastDelivery) {
+      transState = transState.filter((prod) => prod.fastDelivery);
+    }
+
+    if (byRating) {
+      transState = transState.filter((prod) => prod.rating.rate >= byRating);
+    }
+
+    if(searchQuery){
+      transState = transState.filter((prod)=>prod.title.toLowerCase().includes(searchQuery));
+    }
+
+    return transState;
+  }
+
   return (
     <div className="home">
       <Filter />
@@ -35,7 +68,7 @@ export default function Home() {
           <h5>Loading...</h5>
         ) : (
           <>
-            {state.products.map((item, index) => {
+            {transformProduct().map((item, index) => {
               return <Product key={index} item={item} />;
             })}
           </>

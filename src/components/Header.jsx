@@ -15,7 +15,11 @@ export default function Header() {
   const {
     state: { cart },
     dispatch,
+    productState:{searchQuery},
+    productDispatch
   } = ContextValue();
+
+  console.log(searchQuery)
 
   return (
     <Navbar bg="dark" variant="dark" style={{ height: "80px" }}>
@@ -28,6 +32,7 @@ export default function Header() {
             style={{ width: 500 }}
             placeholder="Search Product"
             className="m-auto"
+            onChange={(e)=>productDispatch({type:'FILTER_BY_SEARCH',payload:e.target.value})}
           />
         </Navbar.Text>
         <Nav>
@@ -39,9 +44,10 @@ export default function Header() {
             <Dropdown.Menu style={{ minWidth: 570 }}>
               {cart.length > 0 ? (
                 <>
-                  {cart.map((item) => {
+                  {cart.map((item, key) => {
                     return (
                       <div
+                        key={key}
                         style={{
                           margin: "5px",
                           borderBottom: "100",
@@ -69,6 +75,7 @@ export default function Header() {
                             height: "25px",
                             borderRadius: "13px",
                           }}
+                          alt="product"
                         />
                         <div
                           style={{
